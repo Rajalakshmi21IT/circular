@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generated Circular</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-image: url(bg2.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            font-family: 'Times New Roman', Times, serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.7); /* Adjust opacity here */
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            max-width: 800px;
+            margin: 20px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        header h1 {
+            font-size: 2em;
+            margin: 0;
+            color: #333;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 20px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Generated Circular</h1>
+        </header>
+        <main>
+            <div id="circular-content">
+                <!-- Circular content will be dynamically inserted here -->
+            </div>
+            <button onclick="downloadPDF()">Download PDF</button>
+        </main>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="circular.js"></script>
+</body>
+</html>
