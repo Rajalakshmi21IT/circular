@@ -1,14 +1,15 @@
 function downloadPDF() {
     const { jsPDF } = window.jspdf;
 
-    // Use html2canvas to capture the content
-    html2canvas(document.getElementById('circular-content'), { scale: 2 }).then(canvas => {
+    html2canvas(document.getElementById('circular-content'), { scale: 1 }).then(canvas => {
         const imgData = canvas.toDataURL('image/png');
         const pdf = new jsPDF('p', 'mm', 'a4');
 
-        // Calculate dimensions for the PDF
+        // PDF dimensions
         const pdfWidth = pdf.internal.pageSize.getWidth();
         const pdfHeight = pdf.internal.pageSize.getHeight();
+
+        // Image dimensions
         const imgWidth = pdfWidth;
         const imgHeight = canvas.height * imgWidth / canvas.width;
 
