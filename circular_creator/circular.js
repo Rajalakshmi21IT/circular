@@ -1,8 +1,3 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const circularContent = localStorage.getItem('circularContent');
-    document.getElementById('circular-content').innerHTML = circularContent;
-});
-
 function downloadPDF() {
     const { jsPDF } = window.jspdf;
 
@@ -11,24 +6,17 @@ function downloadPDF() {
         const doc = new jsPDF('p', 'mm', 'a4');
         const pdfWidth = doc.internal.pageSize.getWidth();
         const pdfHeight = doc.internal.pageSize.getHeight();
-        const border = 20; // 2 cm border in mm
-
-        const availableWidth = pdfWidth - 2 * border;
-        const availableHeight = pdfHeight - 2 * border;
-
-        const imgWidth = availableWidth;
+        const imgWidth = pdfWidth;
         const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
-        let x = border;
-        let y = border;
+        let x = 0;
+        let y = (pdfHeight - imgHeight) / 2;
 
-        if (imgHeight > availableHeight) {
-            const scalingFactor = availableHeight / imgHeight;
-            imgWidth = imgWidth * scalingFactor;
-            imgHeight = availableHeight;
-            x = (pdfWidth - imgWidth) / 2;
-        } else {
-            y = (pdfHeight - imgHeight) / 2;
+        if (imgHeight > pdfHeight) {
+            const scalingFactor = pdfHeight / imgHeight;
+            imgWidth *= scalingFactor;
+            imgHeight = pdfHeight;
+            y = 0;
         }
 
         doc.addImage(imgData, 'PNG', x, y, imgWidth, imgHeight);
