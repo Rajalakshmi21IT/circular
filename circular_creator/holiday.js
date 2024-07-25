@@ -9,7 +9,7 @@ function generateHolidayCircular() {
 
     if (!toDateValue) {
         daysValue = 1;
-        pluralDays = daysValue > 1 ? "s" : ""; // Check if plural is needed
+        pluralDays = daysValue > 1 ? "s" : "";
     } else {
         if (toDateValue <= fromDateValue) {
             alert('The "To Date" must be after the "From Date".');
@@ -18,7 +18,7 @@ function generateHolidayCircular() {
 
         const timeDifference = toDateValue.getTime() - fromDateValue.getTime();
         daysValue = Math.ceil(timeDifference / (1000 * 3600 * 24)) + 1;
-        pluralDays = daysValue > 1 ? "s" : ""; // Check if plural is needed
+        pluralDays = daysValue > 1 ? "s" : "";
     }
 
     let circularContent = `
