@@ -3,24 +3,24 @@ function downloadPDF() {
 
     html2canvas(document.getElementById('circular-content')).then(canvas => {
         const imgData = canvas.toDataURL('image/png');
-        const doc = new jsPDF('p', 'mm', 'a4');
-        const pdfWidth = doc.internal.pageSize.getWidth();
-        const pdfHeight = doc.internal.pageSize.getHeight();
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = pdf.internal.pageSize.getHeight();
         const imgWidth = pdfWidth;
-        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+        let imgHeight = canvas.height * imgWidth / canvas.width;
 
-        let x = 0;
-        let y = (pdfHeight - imgHeight) / 2;
-
+        let yOffset = 0;
         if (imgHeight > pdfHeight) {
-            const scalingFactor = pdfHeight / imgHeight;
-            imgWidth *= scalingFactor;
+            const scaleFactor = pdfHeight / imgHeight;
+            imgWidth = pdfWidth * scaleFactor;
             imgHeight = pdfHeight;
-            y = 0;
+            yOffset = 0;
+        } else {
+            yOffset = (pdfHeight - imgHeight) / 2;
         }
 
-        doc.addImage(imgData, 'PNG', x, y, imgWidth, imgHeight);
-        doc.save('circular.pdf');
+        pdf.addImage(imgData, 'PNG', 0, yOffset, imgWidth, imgHeight);
+        pdf.save('circular.pdf');
     }).catch(error => {
         console.error('Error generating PDF:', error);
     });
