@@ -1,9 +1,12 @@
 function downloadPDF() {
     const { jsPDF } = window.jspdf;
 
+    // Use html2canvas to capture the content
     html2canvas(document.getElementById('circular-content'), { scale: 2 }).then(canvas => {
         const imgData = canvas.toDataURL('image/png');
         const pdf = new jsPDF('p', 'mm', 'a4');
+
+        // Calculate dimensions for the PDF
         const pdfWidth = pdf.internal.pageSize.getWidth();
         const pdfHeight = pdf.internal.pageSize.getHeight();
         const imgWidth = pdfWidth;
@@ -23,5 +26,6 @@ function downloadPDF() {
         pdf.save('circular.pdf');
     }).catch(error => {
         console.error('Error generating PDF:', error);
+        alert('Failed to generate PDF. Please try again.');
     });
 }
