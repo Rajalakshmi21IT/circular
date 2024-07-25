@@ -4,12 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generated Circular</title>
-    <link rel="stylesheet" href="styles.css">
     <style>
         body {
-            background-image: url(bg2.jpg);
-            background-repeat: no-repeat;
-            background-size: cover;
             font-family: 'Times New Roman', Times, serif;
             margin: 0;
             padding: 0;
@@ -17,26 +13,16 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            background: rgba(255, 255, 255, 0.9);
         }
         .container {
-            background: rgba(255, 255, 255, 0.9); /* Increased opacity */
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             padding: 20px;
             max-width: 90%;
             width: 100%;
             box-sizing: border-box;
             overflow: auto;
-        }
-        header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        header h1 {
-            font-size: 1.5em;
-            margin: 0;
-            color: #333;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
         button {
             background-color: #007bff;
@@ -48,7 +34,6 @@
             font-size: 1em;
             margin-top: 20px;
             width: 100%;
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
         }
         button:hover {
             background-color: #0056b3;
@@ -67,8 +52,29 @@
             <button onclick="downloadPDF()">Download PDF</button>
         </main>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="circular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.70/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.70/vfs_fonts.js"></script>
+    <script>
+        function downloadPDF() {
+            const content = document.getElementById('circular-content').innerHTML;
+
+            const docDefinition = {
+                content: [
+                    {
+                        text: content,
+                        style: 'content'
+                    }
+                ],
+                styles: {
+                    content: {
+                        fontSize: 12,
+                        margin: [0, 10, 0, 10]
+                    }
+                }
+            };
+
+            pdfMake.createPdf(docDefinition).download('circular.pdf');
+        }
+    </script>
 </body>
 </html>
